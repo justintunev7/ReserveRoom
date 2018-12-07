@@ -1,0 +1,52 @@
+<!doctype html>
+<html ng-app="myApp">
+
+<head>
+    <title>User Login and Sessions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Justin's Website</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a id="homeLink" href="/">Home</a></li>
+                <li><a id="logoutLink" href="/logout">Logout</a></li>
+                <li><a id="editLink" href="/user">Edit User</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="form-container" ng-controller="myController">
+            <p id="sectionTitle" class="form-header">User Profile</p>
+            <form method="POST" action="/user/update">
+                <label>Username:</label>
+                <input type="text" id="username" name="username" ng-model="user.username" disabled><br>
+                <label>Email:</label>
+                <input type="email" id="email" name="email" ng-model="user.email"><br>
+                <label>Favorite Color:</label>
+                <input type="text" id="color" name="color" ng-model="user.color"><br>
+                <input type="submit" id="save" value="Save">
+            </form>
+        </div>
+        <form method="POST" action="/user/delete">
+            <input type="submit" id="delete" value="Delete User">
+        </form>
+        <hr>
+        <span id="userMsg">
+    <%= msg %>
+    </span>
+        <script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
+        <script src="/javascripts/my_app.js"></script>
+        <a id="homeLink" href="/">Home</a>
+    </div>
+</body>
+
+</html>

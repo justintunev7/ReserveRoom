@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>User Login and Sessions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Justin's Website</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a id="homeLink" href="/">Home</a></li>
+                <li><a id="signUpLink" href="/signup">Sign Up</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="form-container">
+            <p class="form-header">Login</p>
+            <form method="POST" action="/login">
+                <label>Username:</label>
+                <input type="text" id="username" name="username"><br>
+                <label>Password:</label>
+                <input type="password" id="password" name="password"><br>
+                <input type="submit" id="login" value="Login">
+            </form>
+        </div>
+        <hr>
+        <span id="loginMsg">
+    <%= msg %> <!-- msg variable -->
+    </span>
+    </div>
+</body>
+
+</html>
