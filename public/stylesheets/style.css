@@ -1,6 +1,7 @@
 body {
   padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #b6cdfb;
 }
 
 a {
@@ -13,6 +14,7 @@ a {
   box-shadow: 5px 10px 8px 10px #888888;
   margin-left: 15%;
   width: 70%;
+  background-color: white;
 }
 
 /* Remove the navbar's default margin-bottom and rounded borders */
