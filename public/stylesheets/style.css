@@ -17,4 +17,8 @@ a {
   background-color: white;
 }
 
+.checkbox {
+  margin-left: 16px;
+}
+
 /* Remove the navbar's default margin-bottom and rounded borders */

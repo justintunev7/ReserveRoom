@@ -3,7 +3,11 @@ var router = express.Router();
 var expressSession = require('express-session');
 
 var users = require('../controllers/users_controller');
+var rooms = require('../controllers/rooms_controller');
+
 console.log("before / Route");
+
+
 router.get('/', function(req, res) {
     console.log("/ Route");
     //    console.log(req);
@@ -32,6 +36,7 @@ router.get('/user', function(req, res) {
         res.redirect('/login');
     }
 });
+
 router.get('/signup', function(req, res) { // sign up for new account
     console.log("/signup Route");
     if (req.session.user) {
@@ -39,6 +44,7 @@ router.get('/signup', function(req, res) { // sign up for new account
     }
     res.render('signup', { msg: req.session.msg });
 });
+
 router.get('/login', function(req, res) { // log into account
     console.log("/login Route");
     if (req.session.user) {
@@ -46,17 +52,54 @@ router.get('/login', function(req, res) { // log into account
     }
     res.render('login', { msg: req.session.msg });
 });
+
 router.get('/logout', function(req, res) {
     console.log("/logout Route");
     req.session.destroy(function() { // will have to log in next time
         res.redirect('/login');
     });
 });
+
+router.get('/room-submit', function(req, res) {
+    if (req.session.user) { // if user logs in correctly
+        console.log("User logged in");
+        res.render('addRoom', {
+            username: req.session.username,
+            msg: req.session.msg,
+            color: req.session.color,
+        }); // send session info        console.log("completed render");
+        //res.redirect('/reservation');
+    }
+    else {
+        req.session.msg = 'Access denied!';
+        res.redirect('/login');
+    }
+
+});
+
+/*router.get('/reserve', function(req, res) {
+    if (req.session.user) { // if user logs in correctly
+        console.log("User logged in");
+        res.render('reserve', {
+            username: req.session.username,
+            msg: req.session.msg,
+            color: req.session.color
+        }); // send session info        console.log("completed render");
+        //res.redirect('/reservation');
+    }
+    else {
+        req.session.msg = 'Access denied!';
+        res.redirect('/login');
+    }
+
+});*/
+
 router.post('/signup', users.signup);
 router.post('/user/update', users.updateUser);
 router.post('/user/delete', users.deleteUser);
 router.post('/login', users.login);
 router.get('/user/profile', users.getUserProfile);
-
+router.post('/add_room', rooms.addRoom);
+router.get('/reserve', rooms.getRooms);
 
 module.exports = router;

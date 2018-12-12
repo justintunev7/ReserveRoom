@@ -1,0 +1,79 @@
+<!doctype html>
+<html ng-app="myApp">
+
+<head>
+    <title>Add Room</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Justin's Website</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a id="homeLink" href="/">Home</a></li>
+                <li><a id="logoutLink" href="/logout">Logout</a></li>
+                <li><a id="editLink" href="/user">Edit User</a></li>
+                <li class="active"><a id="addRoom" href="/room-submit">Add Room</a></li>
+                <li><a id="reserveLink" href="/reserve">Reserve Room</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div ng-controller="myController">
+            <h2 id="welcomeText" style="text-align:center">Add a room</h2>
+            <!-- show username variable -->
+            <form method="POST" action="/add_room">
+                <label>Room Name:</label>
+                <input type="text" id="roomname" name="roomname"><br>
+                <label>Institution:</label>
+                <input type="text" id="institutionname" name="institutionname"><br><br>
+
+
+                <div id="weekdays">
+                    <label>Weeks Days: </label> Remove text from each text box to remove week day from submission<br>
+                    <label>Monday </label><input type="text" id="monday" name="monday" value="M"><br>
+                    <label>Tuesday </label><input type="text" id="tuesday" name="tuesday" value="T"><br>
+                    <label>Wednesday </label><input type="text" id="wednesday" name="wednesday" value="W"><br>
+                    <label>Thursday </label><input type="text" id="thursday" name="thursday" value="Th"><br>
+                    <label>Friday </label><input type="text" id="friday" name="friday" value="F"><br>
+                    <label>Saturday </label><input type="text" id="saturday" name="saturday" value="Sat"><br>
+                    <label>Sunday </label><input type="text" id="sunday" name="sunday" value="Sun"><br><br><br>
+                </div>
+                <!--
+                <div class="checkbox">
+                    <label><input id="sunday" type="checkbox"> Sunday</label><br>
+                    <label><input id="monday" type="checkbox"> Monday</label><br>
+                    <label><input id="tuesday" type="checkbox" value="false"> Tuesday</label><br>
+                    <label><input id="wednesday" type="checkbox" value="true"> Wednesday</label><br>
+                    <label><input id="thursday" type="checkbox" value="true"> Thursday</label><br>
+                    <label><input id="friday" type="checkbox" value="true"> Friday</label><br>
+                    <label><input id="saturday" type="checkbox" value="true"> Saturday</label><br>
+                </div>
+                -->
+                <label>Open Time:</label>
+                <input type="time" id="opentime" name="opentime"><br>
+                <label>Close Time:</label>
+                <input type="time" id="closetime" name="closetime"><br>
+                <input type="submit" id="register" value="Register">
+            </form>
+        </div>
+        <hr>
+        <span id="indexMsg">
+        <%= msg %>
+    </span>
+        <hr>
+    </div>
+    </div>
+    </div>
+    <script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
+    <script src="/javascripts/my_app.js"></script>
+</body>
+
+</html>

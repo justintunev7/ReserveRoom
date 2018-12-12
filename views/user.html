@@ -16,9 +16,11 @@
                 <a class="navbar-brand" href="/">Justin's Website</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a id="homeLink" href="/">Home</a></li>
+                <li><a id="homeLink" href="/">Home</a></li>
                 <li><a id="logoutLink" href="/logout">Logout</a></li>
-                <li><a id="editLink" href="/user">Edit User</a></li>
+                <li class="active"><a id="editLink" href="/user">Edit User</a></li>
+                <li><a id="addRoom" href="/room-submit">Add Room</a></li>
+                <li><a id="reserveRoom" href="/reserve">Reserve Room</a></li>
             </ul>
         </div>
     </nav>
@@ -31,8 +33,6 @@
                 <input type="text" id="username" name="username" ng-model="user.username" disabled><br>
                 <label>Email:</label>
                 <input type="email" id="email" name="email" ng-model="user.email"><br>
-                <label>Favorite Color:</label>
-                <input type="text" id="color" name="color" ng-model="user.color"><br>
                 <input type="submit" id="save" value="Save">
             </form>
         </div>

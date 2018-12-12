@@ -1,8 +1,8 @@
 <!doctype html>
-<html>
+<html ng-app="myApp">
 
 <head>
-    <title>User Login and Sessions</title>
+    <title>Add Room</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -17,31 +17,30 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a id="homeLink" href="/">Home</a></li>
-                <li class="active"><a id="signUpLink" href="/signup">Sign Up</a></li>
+                <li><a id="logoutLink" href="/logout">Logout</a></li>
+                <li><a id="editLink" href="/user">Edit User</a></li>
+                <li><a id="addRoom" href="/room-submit">Add Room</a></li>
+                <li class="active"><a id="reserveLink" href="/reserve">Reserve Room</a></li>
             </ul>
         </div>
     </nav>
 
     <div class="content">
-        <div class="form-container">
-            <p class="form-header">Sign Up</p>
-            <form method="POST" action="/signup">
-                <label>Institution:</label>
-                <input type="text" id="institution" name="institution"><br>
-                <label>Username:</label>
-                <input type="text" id="username" name="username"><br>
-                <label>Password:</label>
-                <input type="password" id="password" name="password"><br>
-                <label>Email:</label>
-                <input type="email" id="email" name="email"><br>
-                <input type="submit" id="register" value="Register">
-            </form>
+        <div ng-controller="myController">
+            <h2 id="welcomeText" style="text-align:center">Reserve a room</h2>
+            <%= roomname %>
+            <!-- show username variable -->
         </div>
         <hr>
-        <span id="signupMsg">
-    <%= msg %>
+        <span id="indexMsg">
+        <%= msg %>
     </span>
+        <hr>
     </div>
+    </div>
+    </div>
+    <script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
+    <script src="/javascripts/my_app.js"></script>
 </body>
 
 </html>

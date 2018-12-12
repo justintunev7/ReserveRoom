@@ -1,19 +1,16 @@
 var crypto = require('crypto');
-var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
 function hashPW(pwd) { // hash function, 
     return crypto.createHash('sha256').update(pwd).
     digest('base64').toString();
 }
 exports.signup = function(req, res) {
-    console.log("Begin exports.signup");
     var user = new User({ username: req.body.username }); // create new user with username
-    console.log("after new user exports.signup");
     user.set('hashed_password', hashPW(req.body.password)); // set password (hashed)
-    console.log("after hashing user exports.signup");
     user.set('email', req.body.email); // set email
-    console.log("after email user exports.signup");
+    user.set('institution', req.body.institution); // set email
     user.save(function(err) { // save into database
         console.log("In exports.signup");
         console.log(err);
@@ -43,7 +40,6 @@ exports.login = function(req, res) {
                     req.session.user = user.id;
                     req.session.username = user.username;
                     req.session.msg = 'Authenticated as ' + user.username;
-                    req.session.color = user.color;
                     res.redirect('/');
                 });
             }
@@ -73,14 +69,12 @@ exports.updateUser = function(req, res) {
     User.findOne({ _id: req.session.user })
         .exec(function(err, user) {
             user.set('email', req.body.email);
-            user.set('color', req.body.color);
             user.save(function(err) {
                 if (err) {
                     res.sessor.error = err;
                 }
                 else {
                     req.session.msg = 'User Updated.';
-                    req.session.color = req.body.color;
                 }
                 res.redirect('/user');
             });
