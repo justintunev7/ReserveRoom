@@ -1,0 +1,77 @@
+<!doctype html>
+<html ng-app="adminApp">
+
+<head>
+    <title>Reserve Room</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Justin's Website</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a id="homeLink" href="/">Home</a></li>
+                <li><a id="logoutLink" href="/logout">Logout</a></li>
+                <li><a id="editLink" href="/user">Edit User</a></li>
+                <li><a id="addRoom" href="/room-submit">Add Room</a></li>
+                <li><a id="testReserveRoom" href="/reserve">Reserve Room (JSON Test)</a></li>
+                <li class="active"><a id="reserveRoom" href="/reserveRoom">Reserve Room</a></li>
+                <li><a id="adminpage" href="/admin-page">Admin Page</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <div class="content">
+        <div ng-controller="MainCtrl">
+
+            <!-- Modal HTML embedded directly into document -->
+            <div id="reservationModal" class="modal">
+                <iframe src="https://calendar.google.com/calendar/embed?title=Room%20Reservations&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;mode=WEEK&amp;height=300&amp;wkst=1&amp;bgcolor=%23ffffff&amp;src=2cctlm6k9itndu6ae1e6evv7ag%40group.calendar.google.com&amp;color=%238D6F47&amp;ctz=America%2FDenver"
+                    style="border-width:0" width="700" height="300" frameborder="0" scrolling="no"></iframe> Open Time: {{opentime}} <br> Close Time: {{closetime}} <br>
+            </div>
+
+            <div class="row">
+
+                <h2 id="welcomeText" style="text-align:center; margin-bottom:20px">Reserve a room</h2>
+
+                <!-- show username variable -->
+                <div class="col-sm-6" ng-repeat="room in rooms | orderBy: 'roomName'">
+                    <div class="card" ng-click='openReservationModal(room)'>
+                        <h4>{{room.roomName}}</h4> <br>
+                        <p>Open Time: {{room.openTime}} <br> Close Time: {{room.closeTime}} <br> Room Capacity: {{room.roomCapacity}}</p>
+                    </div>
+                    <!--<span class="glyphicon glyphicon-remove" ng-click="delete(room)"></span>-->
+
+                </div>
+
+            </div>
+            <hr>
+            <span id="indexMsg">
+        <%= msg %>
+    </span>
+            <hr>
+        </div>
+    </div>
+
+
+    <script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
+    <script src="/javascripts/admin.js"></script>
+</body>
+
+</html>

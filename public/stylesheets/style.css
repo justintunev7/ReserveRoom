@@ -21,4 +21,28 @@ a {
   margin-left: 16px;
 }
 
+.col {
+  border: 1px solid;
+  border-radius: 25px;
+  box-shadow: 2px 5px 4px 5px #888888;
+}
+
+div.card {
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  background-color: #e6e6e6;
+}
+
+.modal {
+  padding: 35px 30px;
+  max-width:60%;
+  min-width:750px;
+}
+
+.modal a.close-modal {
+  top: -4.5px;
+  right: -3.5px;
+}
+
 /* Remove the navbar's default margin-bottom and rounded borders */

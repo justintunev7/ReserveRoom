@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Room = mongoose.model('Room');
+//var Days = mongoose.model('operatingDays');
 
 /*
 exports.getRooms = function(req, res) {
@@ -12,21 +13,38 @@ exports.getRooms = function(req, res) {
         res.send(roomMap);
     });
 };*/
+exports.getReserveRoomPage = function(req, res) {
+    if (req.session.user) { // if user logs in correctly
+        console.log("User logged in");
+        res.render('reserveRoom', {
+            username: req.session.username,
+            msg: req.session.msg,
+            color: req.session.color
+        }); // send session info        console.log("completed render");
+        //res.redirect('/reservation');
+    }
+    else {
+        req.session.msg = 'Access denied!';
+        res.redirect('/login');
+    }
+
+}
+
 
 exports.getRooms = function(req, res) {
     console.log("GET ROOMS ROUTE");
     if (req.session.user) { // if user logs in correctly
         var rooms = [];
-        Room.find({}, '-_id', function(err, result) {
+        Room.find({}, function(err, result) {
             if (err) { console.log('Find did not work', err) }
-            rooms = result;
+            //rooms = result;
             //rooms = JSON.stringify(rooms, null, "\t");
-            res.json(rooms);
-            /*res.render('reserve', {
+            res.json(result);
+            /*console.log('in find function');
+            console.log(result);
+            res.render('reserve', {
                 username: req.session.username,
                 msg: req.session.msg,
-                color: req.session.color,
-                roomname:
             });*/ // send session info        console.log("completed render");
             //res.redirect('/reservation');
         });
@@ -109,97 +127,3 @@ exports.addRoom = function(req, res) {
             }
         });*/
 };
-
-/*exports.updateRoom = function(req, res){
-  User.findOne({ _id: req.session.user })
-  .exec(function(err, user) {
-    user.set('email', req.body.email);
-    user.set('color', req.body.color);
-    user.save(function(err) {
-      if (err){
-        res.sessor.error = err;
-      } else {
-        req.session.msg = 'User Updated.';
-        req.session.color = req.body.color;
-      }
-      res.redirect('/user');
-    });
-  });
-};*/
-
-/*exports.login = function(req, res) {
-    User.findOne({ username: req.body.username }) // find user name
-        .exec(function(err, user) {
-            if (!user) {
-                err = 'User Not Found.';
-            }
-            else if (user.hashed_password ===
-                hashPW(req.body.password.toString())) { // hash their input, compare to saved hashed_password
-                req.session.regenerate(function() {
-                    console.log("login");
-                    console.log(user);
-                    req.session.user = user.id;
-                    req.session.username = user.username;
-                    req.session.msg = 'Authenticated as ' + user.username;
-                    res.redirect('/');
-                });
-            }
-            else {
-                err = 'Authentication failed.';
-            }
-            if (err) {
-                req.session.regenerate(function() {
-                    req.session.msg = err;
-                    res.redirect('/login');
-                });
-            }
-        });
-};
-exports.getUserProfile = function(req, res) {
-    User.findOne({ _id: req.session.user })
-        .exec(function(err, user) {
-            if (!user) {
-                res.json(404, { err: 'User Not Found.' });
-            }
-            else {
-                res.json(user);
-            }
-        });
-};
-exports.updateUser = function(req, res) {
-    User.findOne({ _id: req.session.user })
-        .exec(function(err, user) {
-            user.set('email', req.body.email);
-            user.save(function(err) {
-                if (err) {
-                    res.sessor.error = err;
-                }
-                else {
-                    req.session.msg = 'User Updated.';
-                }
-                res.redirect('/user');
-            });
-        });
-};
-exports.deleteUser = function(req, res) {
-    User.findOne({ _id: req.session.user })
-        .exec(function(err, user) {
-            if (user) {
-                user.remove(function(err) {
-                    if (err) {
-                        req.session.msg = err;
-                    }
-                    req.session.destroy(function() {
-                        res.redirect('/login');
-                    });
-                });
-            }
-            else {
-                req.session.msg = "User Not Found!";
-                req.session.destroy(function() {
-                    res.redirect('/login');
-                });
-            }
-        });
-};
-*/

@@ -13,8 +13,8 @@ var daySchema = new Schema({
 }); // array of strings listing the days the room is open, default M-
 
 mongoose.model('operatingDays', daySchema);
-
-
+*/
+/*
 var reservationSchema = new Schema({
     Title: String, // class name, staff meeting, etc.
     roomName: String,
@@ -32,9 +32,17 @@ var RoomSchema = new Schema({
     roomName: String, // ex: Room 211, Production Studio, etc.
     openTime: String,
     closeTime: String,
-    operatingDays: [String], // [M,T,W,Th,F,Sat,Sun]
     roomCapacity: Number,
-    closedDays: [Date],
+
+    monday: { type: Boolean, default: false },
+    tuesday: { type: Boolean, default: false },
+    wednesday: { type: Boolean, default: false },
+    thursday: { type: Boolean, default: false },
+    friday: { type: Boolean, default: false },
+    saturday: { type: Boolean, default: false },
+    sunday: { type: Boolean, default: false },
+
+    // closedDays: [Date],
 
 });
 

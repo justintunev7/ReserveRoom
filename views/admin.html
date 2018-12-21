@@ -1,8 +1,8 @@
 <!doctype html>
-<html ng-app="myApp">
+<html ng-app="adminApp">
 
 <head>
-    <title>Add Room</title>
+    <title>Reserve Room</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -20,16 +20,24 @@
                 <li><a id="logoutLink" href="/logout">Logout</a></li>
                 <li><a id="editLink" href="/user">Edit User</a></li>
                 <li><a id="addRoom" href="/room-submit">Add Room</a></li>
-                <li class="active"><a id="reserveLink" href="/reserve">Reserve Room</a></li>
+                <li><a id="testReserveRoom" href="/reserve">Reserve Room (JSON Test)</a></li>
+                <li><a id="reserveRoom" href="/reserveRoom">Reserve Room</a></li>
+                <li class="active"><a id="adminpage" href="/admin-page">Admin Page</a></li>
+
             </ul>
         </div>
     </nav>
 
     <div class="content">
-        <div ng-controller="myController">
-            <h2 id="welcomeText" style="text-align:center">Reserve a room</h2>
-            <%= roomname %>
+        <div ng-controller="MainCtrl">
+            <h2 id="welcomeText" style="text-align:center">Delete rooms</h2>
             <!-- show username variable -->
+            <div ng-repeat="room in rooms | orderBy: 'roomName'">
+                <!--<span class="glyphicon glyphicon-remove" ng-click="delete(room)"></span>-->
+                <span class="glyphicon glyphicon-remove" ng-click="delete(room)"></span> {{room.roomName}} <br> Open Time: {{room.openTime}} <br> Close Time: {{room.closeTime}} <br> Room Capacity: {{room.roomCapacity}} <br> Operating Days: TBD <br><br><br>
+
+
+            </div>
         </div>
         <hr>
         <span id="indexMsg">
@@ -40,7 +48,7 @@
     </div>
     </div>
     <script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
-    <script src="/javascripts/my_app.js"></script>
+    <script src="/javascripts/admin.js"></script>
 </body>
 
 </html>
